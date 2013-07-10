@@ -34,7 +34,26 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-group :test do
-  # Pretty printed test output
-  gem 'turn', '~> 0.8.3', :require => false
+group :test, :development do
+  gem 'minitest-spec-rails'
+  gem "spork-minitest", "~> 1.0.0.beta1"
+  gem 'capybara'
 end
+
+group :test do
+  # gem 'cucumber-rails', :require => false
+  gem 'turn'
+  gem 'database_cleaner'
+end
+
+group :development do
+  gem 'thin', :require => false
+  # gem 'guard-cucumber'
+  # gem 'terminal-notifier-guard'
+  gem 'guard-minitest'
+  gem 'guard-spork'
+  gem 'guard-livereload'
+  gem 'guard-pow'
+  # gem 'pry-rails'
+end
+
