@@ -51,4 +51,21 @@ class ProjectsTest < ActionDispatch::IntegrationTest
 
   end
 
+  feature "Deleting projects" do
+
+    # In order to remove needless projects
+    # As a project manager
+    # I want to make them disappear
+
+    scenario "delete a project" do
+      @project = FactoryGirl.create(:project, :name => "TextMate2")
+      visit root_path
+      click_on "TextMate2"
+      click_on "Delete Project"
+      page.must_have_content "Project has been deleted."
+      page.wont_have_content "Textmate2"
+    end
+    
+  end
+
 end
