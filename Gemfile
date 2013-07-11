@@ -21,6 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'dynamic_form'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -36,24 +37,25 @@ gem 'jquery-rails'
 
 group :test, :development do
   gem 'minitest-spec-rails'
-  gem "spork-minitest", "~> 1.0.0.beta1"
   gem 'capybara'
+  gem 'capybara_minitest_spec' # for capybara integration and spec matchers
+  gem "spork-minitest", "~> 1.0.0.beta1"
 end
 
 group :test do
-  # gem 'cucumber-rails', :require => false
-  gem 'turn'
+  gem 'cucumber-rails', :require => false
+  gem 'turn' # for prettier test output
   gem 'database_cleaner'
 end
 
 group :development do
   gem 'thin', :require => false
-  # gem 'guard-cucumber'
-  # gem 'terminal-notifier-guard'
+  # gem 'pry-rails'
+  gem 'terminal-notifier-guard'
   gem 'guard-minitest'
   gem 'guard-spork'
   gem 'guard-livereload'
   gem 'guard-pow'
-  # gem 'pry-rails'
+  # gem 'guard-cucumber'
 end
 
