@@ -8,9 +8,13 @@ class TicketsController < ApplicationController
   end
 
   def create
+    logger.debug params.inspect
     @ticket = @project.tickets.build(params[:ticket])
     if @ticket.save
       redirect_to [@project, @ticket], :notice => "Ticket has been created."
+    else
+      flash[:alert] = "Ticket has not been created."
+      render :action => "new"
     end
   end
 
