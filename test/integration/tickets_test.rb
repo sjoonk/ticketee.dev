@@ -22,4 +22,32 @@ class TicketsTest < ActionDispatch::IntegrationTest
     scenario "creating a ticket without valid attributes fails"
 
   end
+
+
+  feature "Viewing tickets" do
+    
+    # In order to view the tickets for a project
+    # As a user
+    # I want to see them on that project's page
+
+    before do
+      @proj1 = FactoryGirl.create(:project, :name => "TextMate2")
+      @t1 = FactoryGirl.create(
+        :ticket,
+        :title => "Make it shiny!",
+        :description => "Gradients! Starbursts! Oh my!",
+        :project => @proj1
+      )
+    end
+
+    scenario "viewing tickets for a given project" do
+      visit root_path
+      click_on "TextMate2"
+      page.must_have_content "Make it shiny!"
+      click_on "Make it shiny!"
+      page.must_have_content "Gradients! Starbursts! Oh my!"
+    end
+
+  end
+
 end
