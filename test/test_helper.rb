@@ -5,7 +5,10 @@ require 'rails/test_help'
 require 'minitest/pride'
 require 'capybara/rails'
 
-Turn.config.format = :outline
+Turn.config do |c|
+  c.format = :outline
+  c.trace = 1
+end
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
