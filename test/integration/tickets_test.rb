@@ -23,22 +23,22 @@ class TicketsTest < ActionDispatch::IntegrationTest
 
   end
 
+  before do
+    @proj1 = FactoryGirl.create(:project, :name => "TextMate2")
+    @t1 = FactoryGirl.create(
+      :ticket,
+      :title => "Make it shiny!",
+      :description => "Gradients! Starbursts! Oh my!",
+      :project => @proj1
+    )
+  end
+
 
   feature "Viewing tickets" do
     
     # In order to view the tickets for a project
     # As a user
     # I want to see them on that project's page
-
-    before do
-      @proj1 = FactoryGirl.create(:project, :name => "TextMate2")
-      @t1 = FactoryGirl.create(
-        :ticket,
-        :title => "Make it shiny!",
-        :description => "Gradients! Starbursts! Oh my!",
-        :project => @proj1
-      )
-    end
 
     scenario "viewing tickets for a given project" do
       visit root_path
@@ -49,5 +49,24 @@ class TicketsTest < ActionDispatch::IntegrationTest
     end
 
   end
+  
+  feature "Editing tickets" do
+
+    # In order to alter ticket information
+    # As a user
+    # I want a form to edit the tickets
+
+    scenario "Updating a ticket"
+    scenario "Updating a ticket with invalid information" do
+      visit project_path(@proj1)
+      click_on "Make it shiny!"
+      click_on "Edit Ticket"
+      fill_in "Title", :with => ""
+      click_on "Update Ticket"
+      page.must_have_content "Ticket has not been updated."
+    end
+
+  end
+
 
 end
