@@ -57,6 +57,7 @@ class TicketsTest < ActionDispatch::IntegrationTest
     # I want a form to edit the tickets
 
     scenario "Updating a ticket"
+
     scenario "Updating a ticket with invalid information" do
       visit project_path(@proj1)
       click_on "Make it shiny!"
@@ -64,6 +65,20 @@ class TicketsTest < ActionDispatch::IntegrationTest
       fill_in "Title", :with => ""
       click_on "Update Ticket"
       page.must_have_content "Ticket has not been updated."
+    end
+
+  end
+
+  feature "Deleting ticket" do
+
+    # In order to remove tickets
+    # As a user
+    # I want to press a button and make them disapper
+
+    scenario "deleting a ticket" do
+      visit project_ticket_path(@proj1, @t1)
+      click_on "Delete Ticket"
+      page.must_have_content "Ticket has been deleted."
     end
 
   end
