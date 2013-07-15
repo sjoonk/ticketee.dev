@@ -23,6 +23,8 @@ end
 gem 'jquery-rails'
 gem 'dynamic_form'
 
+gem 'devise'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -39,7 +41,7 @@ group :test, :development do
   gem 'minitest-spec-rails'
   gem 'capybara'
   gem 'capybara_minitest_spec' # for capybara integration and spec matchers
-  gem 'factory_girl_rails'
+  # gem 'factory_girl_rails'
   gem "spork-minitest", "~> 1.0.0.beta1"
 end
 
@@ -47,6 +49,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'turn' # for prettier test output
   gem 'database_cleaner'
+  gem 'miniskirt'
 end
 
 group :development do

@@ -37,7 +37,7 @@ class ProjectsTest < ActionDispatch::IntegrationTest
     # I want to be able to do that through an interface
     
     it "update a project" do
-      @project = FactoryGirl.create(:project, :name => "TextMate2")
+      @project = Factory.create(:project, :name => "TextMate2")
       visit root_path
       click_on "TextMate2"
       click_on "Edit Project"
@@ -58,7 +58,7 @@ class ProjectsTest < ActionDispatch::IntegrationTest
     # I want to make them disappear
 
     scenario "delete a project" do
-      @project = FactoryGirl.create(:project, :name => "TextMate2")
+      @project = Factory.create(:project, :name => "TextMate2")
       visit root_path
       click_on "TextMate2"
       click_on "Delete Project"

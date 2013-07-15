@@ -6,7 +6,7 @@ class TicketsTest < ActionDispatch::IntegrationTest
   feature "Creating Tickets" do
 
     before do
-      @project ||= FactoryGirl.create(:project, :name => "Internet Explorer")
+      @project ||= Factory.create(:project, :name => "Internet Explorer")
     end
 
     scenario "create a ticket" do
@@ -24,8 +24,8 @@ class TicketsTest < ActionDispatch::IntegrationTest
   end
 
   before do
-    @proj1 = FactoryGirl.create(:project, :name => "TextMate2")
-    @t1 = FactoryGirl.create(
+    @proj1 = Factory.create(:project, :name => "TextMate2")
+    @t1 = Factory.create(
       :ticket,
       :title => "Make it shiny!",
       :description => "Gradients! Starbursts! Oh my!",
@@ -35,7 +35,7 @@ class TicketsTest < ActionDispatch::IntegrationTest
 
 
   feature "Viewing tickets" do
-    
+   
     # In order to view the tickets for a project
     # As a user
     # I want to see them on that project's page
