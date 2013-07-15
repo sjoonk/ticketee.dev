@@ -5,6 +5,8 @@ require 'rails/test_help'
 require 'factories'
 require 'minitest/pride'
 require 'capybara/rails'
+# require "minitest-matchers"
+require "email_spec"
 
 Turn.config do |c|
   c.format = :outline

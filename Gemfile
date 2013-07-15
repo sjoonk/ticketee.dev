@@ -43,6 +43,8 @@ group :test, :development do
   gem 'capybara_minitest_spec' # for capybara integration and spec matchers
   # gem 'factory_girl_rails'
   gem "spork-minitest", "~> 1.0.0.beta1"
+  gem 'email_spec'
+  # gem 'capybara-email'
 end
 
 group :test do
