@@ -46,7 +46,17 @@ class UserSignupTest < ActionDispatch::IntegrationTest
       page.must_have_content "Signed in as user@ticketee.com"
     end
 
-  end
+    scenario "Signing in via form" do
+      user = User.create(:email => "user@ticketee.com", :password => "password")
+      user.confirm!
+      visit root_path
+      click_link "Sign in"
+      fill_in "Email", :with => "user@ticketee.com"
+      fill_in "Password", :with => "password"
+      click_button "Sign in"
+      page.must_have_content "Signed in successfully"
+    end
 
+  end
 
 end
