@@ -56,3 +56,19 @@ class ActionDispatch::IntegrationTest
     alias_method :scenario, :it
   end
 end
+
+
+# Custom helper methods
+
+class ActiveSupport::TestCase
+
+  def sign_in_as_a_user
+    page.must_have_content "You need to sign in or sign up"
+    # visit new_user_session_path
+    fill_in "Email", :with => "user@ticketee.com"
+    fill_in "Password", :with => "password"
+    click_button "Sign in"
+  end
+end
+
+

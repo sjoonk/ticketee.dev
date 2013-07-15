@@ -2,22 +2,27 @@ require 'test_helper'
 
 class TicketsTest < ActionDispatch::IntegrationTest
   # fixtures :all
+  
 
   feature "Creating Tickets" do
 
-    before do
-      @project ||= Factory.create(:project, :name => "Internet Explorer")
-    end
 
-    scenario "create a ticket" do
+   before do
+      @project ||= Factory.create(:project, :name => "Internet Explorer")
+   end
+
+   scenario "create a ticket" do
       visit root_path
-      click_on "Internet Explorer"
+      click_link "Internet Explorer"
       click_on "New Ticket"
+      sign_in_as_a_user
+      page.must_have_content "New Ticket"
       fill_in "Title", :with => "Non-standards compliance"
       fill_in "Description", :with => "My pages are ugly!"
       click_on "Create Ticket"
       page.must_have_content "Ticket has been created"
     end
+
 
     scenario "creating a ticket without valid attributes fails"
 
@@ -31,6 +36,8 @@ class TicketsTest < ActionDispatch::IntegrationTest
       :description => "Gradients! Starbursts! Oh my!",
       :project => @proj1
     )
+    @user = User.create(:email => "user@ticketee.com", :password => "password")
+    @user.confirm!
   end
 
 
@@ -62,6 +69,10 @@ class TicketsTest < ActionDispatch::IntegrationTest
       visit project_path(@proj1)
       click_on "Make it shiny!"
       click_on "Edit Ticket"
+      sign_in_as_a_user
+      visit project_path(@proj1)
+      click_on "Make it shiny!"
+      click_on "Edit Ticket"
       fill_in "Title", :with => ""
       click_on "Update Ticket"
       page.must_have_content "Ticket has not been updated."
@@ -76,6 +87,9 @@ class TicketsTest < ActionDispatch::IntegrationTest
     # I want to press a button and make them disapper
 
     scenario "deleting a ticket" do
+      visit project_ticket_path(@proj1, @t1)
+      click_on "Delete Ticket"
+      sign_in_as_a_user
       visit project_ticket_path(@proj1, @t1)
       click_on "Delete Ticket"
       page.must_have_content "Ticket has been deleted."
