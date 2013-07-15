@@ -41,17 +41,16 @@ group :test, :development do
   gem 'minitest-spec-rails'
   gem 'capybara'
   gem 'capybara_minitest_spec' # for capybara integration and spec matchers
-  # gem 'factory_girl_rails'
+  gem 'factory_girl_rails'
   gem "spork-minitest", "~> 1.0.0.beta1"
   gem 'email_spec'
-  # gem 'capybara-email'
 end
 
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'turn' # for prettier test output
   gem 'database_cleaner'
-  gem 'miniskirt'
+  # gem 'miniskirt'
 end
 
 group :development do

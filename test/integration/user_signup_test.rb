@@ -4,8 +4,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
 
   include EmailSpec::Helpers
   include EmailSpec::Matchers
-  # include Capybara::Email::DSL
-  include Rails.application.routes.url_helpers
+  # include Rails.application.routes.url_helpers
 
   # fixtures :users
 

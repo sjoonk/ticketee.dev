@@ -83,6 +83,11 @@ GEM
     eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     ffi (1.9.0)
     formatador (0.2.4)
     gherkin (2.12.0)
@@ -126,8 +131,6 @@ GEM
     method_source (0.8.1)
     mime-types (1.23)
     mini_portile (0.5.1)
-    miniskirt (1.2.1)
-      activesupport
     minitest (4.7.5)
     minitest-spec-rails (4.7.3)
       minitest (~> 4.7)
@@ -222,12 +225,12 @@ DEPENDENCIES
   devise
   dynamic_form
   email_spec
+  factory_girl_rails
   guard-livereload
   guard-minitest
   guard-pow
   guard-spork
   jquery-rails
-  miniskirt
   minitest-spec-rails
   mysql2
   rails (= 3.1.12)

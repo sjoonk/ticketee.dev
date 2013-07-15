@@ -2,7 +2,7 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 # require 'minitest/autorun'
-require 'factories'
+# require 'factories'
 require 'minitest/pride'
 require 'capybara/rails'
 # require "minitest-matchers"
@@ -57,18 +57,37 @@ class ActionDispatch::IntegrationTest
   end
 end
 
+# class MiniTest::Spec
+#   before :each do
+#     DatabaseCleaner.start
+#   end
+
+#   after :each do
+#     DatabaseCleaner.clean
+#   end
+# end
 
 # Custom helper methods
 
 class ActiveSupport::TestCase
 
   def sign_in_as_a_user
+    @user = FactoryGirl.create :user
     page.must_have_content "You need to sign in or sign up"
     # visit new_user_session_path
     fill_in "Email", :with => "user@ticketee.com"
     fill_in "Password", :with => "password"
     click_button "Sign in"
   end
+
+  def as_a_signed_in_user
+    @user = FactoryGirl.create :user
+    visit new_user_session_path
+    fill_in "Email", :with => @user.email
+    fill_in "Password", :with => @user.password
+    click_button "Sign in"
+  end
+
 end
 
 
