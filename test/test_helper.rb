@@ -44,10 +44,14 @@ end
 
 # Aliasing DSL more looking like cucumber/rspec style
 
-class MiniTest::Spec
+class ActiveSupport::TestCase #MiniTest::Spec
   class << self
     alias_method :context, :describe
   end
+end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
 end
 
 class ActionDispatch::IntegrationTest
@@ -80,8 +84,8 @@ class ActiveSupport::TestCase
     click_button "Sign in"
   end
 
-  def as_a_signed_in_user
-    @user = FactoryGirl.create :user
+  def as_a_signed_in_user(user=nil)
+    @user = user || FactoryGirl.create(:user)
     visit new_user_session_path
     fill_in "Email", :with => @user.email
     fill_in "Password", :with => @user.password

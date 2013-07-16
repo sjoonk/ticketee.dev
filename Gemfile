@@ -51,6 +51,7 @@ group :test do
   gem 'turn' # for prettier test output
   gem 'database_cleaner'
   # gem 'miniskirt'
+  # gem 'mini_backtrace'
 end
 
 group :development do

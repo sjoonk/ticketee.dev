@@ -5,6 +5,11 @@ require 'test_helper'
 class ProjectsTest < ActionDispatch::IntegrationTest
   # fixtures :all
 
+  before do
+    admin = FactoryGirl.create(:admin)
+    as_a_signed_in_user(admin)
+  end
+
   feature "Creating projects" do
     
     # In order to have projects to assing tickets to
@@ -36,16 +41,16 @@ class ProjectsTest < ActionDispatch::IntegrationTest
     # As as user
     # I want to be able to do that through an interface
     
-    it "update a project" do
-      @project = FactoryGirl.create(:project, :name => "TextMate2")
-      visit root_path
-      click_on "TextMate2"
-      click_on "Edit Project"
-      fill_in "Name", :with => "TextMate2 beta"
-      click_on "Update Project"
-      page.must_have_content "Project has been updated."
-      current_path.must_equal project_path(@project)
-    end
+    # it "update a project" do
+    #   @project = FactoryGirl.create(:project, :name => "TextMate2")
+    #   visit root_path
+    #   click_on "TextMate2"
+    #   click_on "Edit Project"
+    #   fill_in "Name", :with => "TextMate2 beta"
+    #   click_on "Update Project"
+    #   page.must_have_content "Project has been updated."
+    #   current_path.must_equal project_path(@project)
+    # end
     
     scenario "Updating with invalid attributes"
 

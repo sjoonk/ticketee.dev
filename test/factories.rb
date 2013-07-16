@@ -34,5 +34,13 @@ FactoryGirl.define do
     after(:create ) { |user| user.confirm! }
   end
 
+  factory :admin, :class => User do
+    email "admin@ticketee.com"
+    password "password"
+    password_confirmation "password"
+    after(:create ) { |user| user.confirm! }
+    admin true
+  end
+
 end
 

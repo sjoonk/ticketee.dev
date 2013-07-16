@@ -20,7 +20,7 @@ class TicketsTest < ActionDispatch::IntegrationTest
 
   feature "Creating Tickets" do
 
-   scenario "create a ticket" do
+    scenario "create a ticket" do
       visit root_path
       click_link "TextMate2"
       click_on "New Ticket"
